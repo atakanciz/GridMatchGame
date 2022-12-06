@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using DG.Tweening;
 using UnityEngine;
 
@@ -69,9 +70,12 @@ public class BoardManager : MonoSingleton<BoardManager>
         {
             foreach (var grid in grids)
             {
-                Destroy(grid);
+                Destroy(grid.gameObject);
             }
         }
+
+        matchCount = 0;
+        UIManager.Instance.UpdateMatchCount(matchCount);
     }
 
     private List<Grid> pressedGrids;

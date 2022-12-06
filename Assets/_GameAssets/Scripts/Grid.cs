@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Grid : MonoBehaviour
@@ -24,10 +25,11 @@ public class Grid : MonoBehaviour
         
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size);
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, size);
-        Vector3 pos = transform.localPosition;
+        Vector2 pos = Vector2.zero;
         pos.x = (size / 2) + (i * size);
         pos.y = (size / 2) + (j * size);
-        transform.position = pos;
+        rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
+        
     }
 
     public void AddNeighbour(Grid neighbor)
