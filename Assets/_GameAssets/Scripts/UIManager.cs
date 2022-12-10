@@ -17,13 +17,18 @@ public class UIManager : MonoSingleton<UIManager>
     private GameSettings settings => SettingsManager.GameSettings;
     private int minBoardSize => settings.MinBoardSize;
     private int maxBoardSize => settings.MaxBoardSize;
-    
+
+    private void Start()
+    {
+        warningPanel.SetActive(false);
+    }
+
     public void OnRebuildButtonClick()
     {
         int boardSize = 0;
         Int32.TryParse(gridSizeText.text, out boardSize);
         
-        if (boardSize > minBoardSize || boardSize < maxBoardSize)
+        if (boardSize >= minBoardSize && boardSize <= maxBoardSize)
         {
             BoardManager.Instance.CreateBoard(boardSize);
         }
@@ -38,7 +43,7 @@ public class UIManager : MonoSingleton<UIManager>
         warningPanel.SetActive(true);
     }
 
-    private void OnCloseButtonClick()
+    public void OnCloseButtonClick()
     {
         warningPanel.SetActive(false);
     }
